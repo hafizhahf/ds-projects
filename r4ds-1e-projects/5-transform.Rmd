@@ -233,11 +233,12 @@ flights %>%
   mutate(air_time_cal = arr_time - dep_time) %>%
   select(air_time, air_time_cal)
 
-# calculate difference between arr_time - dep_time by convert them to minutes first
+# convert dep_time and arr_time to minutes after midnight
+# calculate air time from converted arr_time and dep_time
 flights %>% 
   mutate(dep_time_min = (dep_time %/% 100 * 60 + dep_time %% 100) %% 1440,
-                   arr_time_min  = (arr_time %/% 100 * 60 + arr_time %% 100) %% 1440,
-                   new_air_time = arr_time_min - dep_time_min) %>%
+         arr_time_min  = (arr_time %/% 100 * 60 + arr_time %% 100) %% 1440,
+         new_air_time = arr_time_min - dep_time_min) %>%
   select(air_time, new_air_time)
 ```
 
