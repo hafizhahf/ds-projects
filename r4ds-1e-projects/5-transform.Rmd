@@ -248,7 +248,7 @@ Direct calculation of `arr_time - dep_time` and converting them first into minut
 > 3. Compare `dep_time`, `sched_dep_time`, and `dep_delay`. How would you expect those three numbers to be related?
 
 ```{r 552-part-3}
-# using previously saved convert_time, calculate departure time differences (dep_diff)
+# using previously saved convert_time, calculate departure delay and saved it as dep_diff
 # inspect if values in dep_diff equal to dep_delay
 convert_time %>% 
   mutate(dep_diff = dep_time_min - sched_dep_time_min,
