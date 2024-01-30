@@ -475,7 +475,35 @@ ggplot(data = diamonds) +
 To modify labels: title, subtitle, caption, tag, alt, alt_insight, and axis labels.
 
 
-> 3. What’s the difference between coord_quickmap() and coord_map()?
+> 3. What’s the difference between `coord_quickmap()` and `coord_map()`?
+
+`coord_quickmap()` and `coord_map` are coordinate system for map projection. `coord_quickmap()` is a quick process that use aspect ratio aproximation (1m of latitude and 1m of longitude are the same distance in the middle plot). `coord_map()` do formal map projection (default is mercator projection).
+
+
+> 4. What does the plot below tell you about the relationship between city and highway mpg? Why is `coord_fixed()` important? What does `geom_abline()` do?
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
+  geom_point() + 
+  geom_abline() +
+  coord_fixed()
+
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
+  geom_point()
+
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
+  geom_point() + 
+  geom_smooth() +
+  coord_fixed()
+```
+
+
+The plot use to examine relationship between `cty` and `hwy`. The `geom_abline()` add reference lines as specified by slope and intercept. Unlike other geoms, the `geom_abline` does not inherit aesthetics from the plot default, and does not affect by x and y scales. In this plot `geom_abline()` used to add line to data shown in `geom_point()`. Although the line displayed a relationship between `cty` and `hwy`, it's not mapped between the plotted dots/points.
+
+The `coord_catesian` forces a specified ration between data unit in both axes to ensure that one unit in the x-axis is the same length as one unit on the y-axis by default.
 
 
 
