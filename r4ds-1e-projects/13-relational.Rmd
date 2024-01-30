@@ -1,0 +1,48 @@
+---
+title: "nycflights13 - r4ds relational data exercise"
+author: "Hafizhah Fadhilla"
+date: "2024-01-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+### Dataset
+
+This data frame contains all 336,776 flights that departed from New York City in 2013. The data comes from the US Bureau of Transportation Statistics. Click [nycflights13](https://cran.r-project.org/web/packages/nycflights13/nycflights13.pdf) to get details about the package.
+
+
+### 13.2 Exercise
+
+> 1. Imagine you wanted to draw (approximately) the route each plane flies from its origin to its destination. What variables would you need? What tables would you need to combine?
+
+Variables for daily routes of each plane from origins to destinations: `year`, `month`, `day`, `tailnum` (plane), `origin` (airport origin, displayed in faa code), and `dest` (airport destination, displayed in faa code) from flights dataset. To get the name of airports, these selected variables need to be joined with `airport` dataset.
+
+
+> 2. I forgot to draw the relationship between `weather` and `airports`. What is the relationship and how should it appear in the diagram?
+
+The `airport` dataset will supply the location information: name of airport, latitude, longitude, to the `weather` dataset.
+
+
+> 3. `weather` only contains information for the origin (NYC) airports. If it contained weather records for all airports in the USA, what additional relation would it define with `flights`?
+
+It could provide daily weather information for each location of airports.
+
+> 4. We know that some days of the year are “special”, and fewer people than usual fly on them. How might you represent that data as a data frame? What would be the primary keys of that table? How would it connect to the existing tables?
+
+A new data frame consists of year, month, day, date, and name of special days (public, national, federal, and statutory holidays). The primary keys to connect to existing dataset (flights) are year, month, day.
+
+
+### 13.3 Exercise
+
+> Add a surrogate key to flights.
+
+```{r 133-part-1}
+plot(pressure)
+```
+
+
